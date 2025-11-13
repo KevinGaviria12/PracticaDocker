@@ -1,0 +1,38 @@
+# Archivos compilados y directorios de build
+target/
+*.jar
+*.war
+*.ear
+*.class
+
+# Archivos de Maven
+.mvn/
+mvnw
+mvnw.cmd
+
+# Archivos de IDE
+.idea/
+*.iml
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Logs
+*.log
+
+# Archivos de Git
+.git/
+.gitignore
+
+# Archivos temporales
+*.tmp
+*.temp
+
+# Documentación
+README.md
+HELP.md
+
+# Variables de entorno locales
+.env
+.env.local

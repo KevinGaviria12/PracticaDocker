@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  # Servicio de la aplicación Spring Boot
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: adso-app
+    ports:
+      - "3005:3005"  # Puerto host:Puerto contenedor
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+      # Si usas base de datos, descomenta y configura:
+      # - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/adso_db
+      # - SPRING_DATASOURCE_USERNAME=root
+      # - SPRING_DATASOURCE_PASSWORD=secret
+    networks:
+      - app-network
+    # Si usas base de datos, descomenta esta línea:
+    # depends_on:
+    #   - db
+    restart: unless-stopped
+
+  # Ejemplo de servicio de base de datos MySQL (descomenta si lo necesitas)
+  # db:
+  #   image: mysql:8.0
+  #   container_name: adso-mysql
+  #   environment:
+  #     MYSQL_DATABASE: adso_db
+  #     MYSQL_ROOT_PASSWORD: secret
+  #   ports:
+  #     - "3306:3306"
+  #   volumes:
+  #     - mysql-data:/var/lib/mysql
+  #   networks:
+  #     - app-network
+  #   restart: unless-stopped
+
+networks:
+  app-network:
+    driver: bridge
+
+# Volúmenes para persistencia de datos
+# volumes:
+#   mysql-data:
